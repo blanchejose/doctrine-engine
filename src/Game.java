@@ -32,18 +32,8 @@ public class Game {
             update();
             drawOnBuffer();
             drawOnScreen();
-            long sleep = SLEEP -(System.currentTimeMillis() - before);
+            sleep();
 
-            if(sleep <4){
-                sleep =4;
-            }
-            try {
-                Thread.sleep(sleep);
-
-            }catch (InterruptedException e){
-                e.printStackTrace();
-            }
-            before = System.currentTimeMillis();
         }
     }
     public void update(){
@@ -67,6 +57,20 @@ public class Game {
 
 
     }
+    private void sleep(){
+        long sleep = SLEEP -(System.currentTimeMillis() - before);
+
+        if(sleep <4){
+            sleep =4;
+        }
+        try {
+            Thread.sleep(sleep);
+
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        before = System.currentTimeMillis();
+    }
     private void initializePanel(){
         panel = new JPanel();
         panel.setBackground(Color.BLUE);
@@ -82,4 +86,5 @@ public class Game {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// tuer le programme
         frame.setState(JFrame.NORMAL);//l'etat normal
     }
+
 }
