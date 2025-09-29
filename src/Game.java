@@ -23,11 +23,8 @@ public class Game {
         before = System.currentTimeMillis();
         while(playing){
             bufferedImage = new BufferedImage (800, 600, BufferedImage.TYPE_INT_RGB);
-            RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON);
-            hints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-            bufferEngine = bufferedImage.createGraphics(); //qui permet décrire sur l'image
-            bufferEngine.setRenderingHints(hints);//definir comment gerer son affichage
+            bufferEngine = bufferedImage.createGraphics();
+            bufferEngine.setRenderingHints(buildRenderingHints());
 
             update();
             drawOnBuffer();
@@ -85,6 +82,14 @@ public class Game {
         frame.setResizable(false);//
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// tuer le programme
         frame.setState(JFrame.NORMAL);//l'etat normal
+    }
+    private RenderingHints buildRenderingHints(){
+        RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        hints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        bufferEngine = bufferedImage.createGraphics(); //qui permet décrire sur l'image
+        bufferEngine.setRenderingHints(hints);//definir comment gerer son affichage
+        return hints;
     }
 
 }
