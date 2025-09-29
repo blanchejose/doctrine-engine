@@ -8,6 +8,10 @@ public class BouncingBallGame extends Game {
         ball = new Ball(25);
     }
     @Override
+    public void initialize() {
+        ball = new Ball(25);
+    }
+    @Override
     public void update(){
         ball.update();
         if(ball.hasTouched()){

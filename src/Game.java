@@ -5,25 +5,31 @@ public abstract class Game {
     private  RenderingEngine renderingEngine;
     private boolean playing = true;
    private long before;
-   public abstract void update();
+    public abstract void initialize();
+    public abstract void update();
    public abstract void drawOnBuffer(Graphics2D buffer);
 
-    Game() {
+    public final void start(){
         renderingEngine = new RenderingEngine();
-    }
-    public void start(){
         renderingEngine.start();
         before = System.currentTimeMillis();
-        while(playing){
-            update();
-            drawOnBuffer(renderingEngine.buildBuffer());
-            renderingEngine.drawOnScreen();
-            sleep();
+        run();
+        initialize();
+       conclude();
 
-        }
     }
+    public void conclude(){
 
+    }
+private void run(){
+    while(playing){
+        update();
+        drawOnBuffer(renderingEngine.buildBuffer());
+        renderingEngine.drawOnScreen();
+        sleep();
 
+    }
+}
 
     private void sleep(){
         long sleep = SLEEP -(System.currentTimeMillis() - before);
