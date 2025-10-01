@@ -1,3 +1,5 @@
+package Doctrine;
+
 import java.awt.*;
 
 public class Canvas {

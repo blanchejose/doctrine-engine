@@ -1,4 +1,6 @@
-import java.awt.*;
+import Doctrine.Canvas;
+import Doctrine.Game;
+
 //difference entre une interface et une classe abstraite
 public final class BouncingBallGame extends Game {
     private int score;

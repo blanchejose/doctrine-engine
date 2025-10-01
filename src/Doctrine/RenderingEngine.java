@@ -1,7 +1,8 @@
+package Doctrine;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Map;
 
 public class RenderingEngine {
     private BufferedImage bufferedImage;
@@ -20,7 +21,7 @@ public void stop() {
     frame.setVisible(false);
     frame.dispose();
 }
-public  Canvas buildCanvas() {
+public Doctrine.Canvas buildCanvas() {
     bufferedImage = new BufferedImage (800, 600, BufferedImage.TYPE_INT_RGB);
     bufferEngine = bufferedImage.createGraphics();
     bufferEngine.setRenderingHints(buildRenderingHints());

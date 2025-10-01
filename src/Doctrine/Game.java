@@ -1,6 +1,8 @@
+package Doctrine;
+
 public abstract class Game {
     private static final int SLEEP = 25;
-    private  RenderingEngine renderingEngine;
+    private RenderingEngine renderingEngine;
     private boolean playing = true;
    private long before;
     public abstract void initialize();
