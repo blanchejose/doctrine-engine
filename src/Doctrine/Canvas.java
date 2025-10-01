@@ -17,7 +17,7 @@ public class Canvas {
         graphics.setPaintMode();
         graphics.fillOval(x, y, radius*2, radius*2);
     }
-    public void drawString(String text, int x, int y) {
+    public void drawString(String text, int x, int y, int i, Color white) {
         graphics.setPaintMode();
         graphics.drawString(text, x, y);
     }

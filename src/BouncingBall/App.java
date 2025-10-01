@@ -1,3 +1,5 @@
+package BouncingBall;
+
 import Doctrine.Game;
 
 public class App {

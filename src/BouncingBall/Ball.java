@@ -1,3 +1,5 @@
+package BouncingBall;
+
 import Doctrine.Canvas;
 
 import java.awt.*;
