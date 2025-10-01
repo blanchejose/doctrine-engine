@@ -22,9 +22,8 @@ public Ball(int radius) {
             velocityX *=-1;
         }
     }
-    public void draw(Graphics2D buffer){
-        buffer.setPaint(Color.RED);
-        buffer.fillOval(x,y,raduis*2,raduis*2);
+    public void draw(Canvas canvas){
+     canvas.drawCircle(x,y,raduis,Color.RED);
     }
     public boolean hasTouchedVertically(){
     return y <=raduis || y>=600 -raduis;

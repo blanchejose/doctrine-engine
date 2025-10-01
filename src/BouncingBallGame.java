@@ -1,5 +1,5 @@
 import java.awt.*;
-
+//difference entre une interface et une classe abstraite
 public final class BouncingBallGame extends Game {
     private int score;
     private Ball ball;
@@ -19,10 +19,10 @@ public final class BouncingBallGame extends Game {
         }
     }
     @Override
-    public void drawOnBuffer( Graphics2D bufferEngine){
-        ball.draw(bufferEngine);
-        bufferEngine.setPaint(Color.WHITE);
-        bufferEngine.drawString("Score: "+score,10,20);
+    public void draw( Canvas canvas ) {
+        ball.draw(canvas);
+        canvas.drawString("Score: "+score,10,20);
+
     }
 
 }
