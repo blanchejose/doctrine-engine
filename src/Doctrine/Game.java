@@ -1,5 +1,7 @@
 package Doctrine;
 
+import java.awt.event.KeyListener;
+
 public abstract class Game {
     private RenderingEngine renderingEngine;
     private boolean playing = true;
@@ -10,10 +12,13 @@ public abstract class Game {
     public final void start(){
         renderingEngine = new RenderingEngine();
         renderingEngine.start();
-        run();
         initialize();
-       conclude();
+        run();
+        conclude();
 
+    }
+    public void addKeyListener(KeyListener listener){
+        renderingEngine.addKeyListener(listener);
     }
     public void conclude(){
 

@@ -2,6 +2,7 @@ package Doctrine;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 public class RenderingEngine {
@@ -13,6 +14,10 @@ public class RenderingEngine {
 RenderingEngine() {
     initializeFrame();
     initializePanel();
+}
+public void addKeyListener(KeyListener listener) {
+    panel.addKeyListener(listener);
+
 }
 public void start() {
     frame.setVisible(true);
