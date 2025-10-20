@@ -5,16 +5,20 @@ import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
+
 public class RenderingEngine {
     private BufferedImage bufferedImage;
     private Graphics2D bufferEngine;
     private JFrame frame;
     private JPanel panel;
-
-RenderingEngine() {
-    initializeFrame();
-    initializePanel();
+    private  static  RenderingEngine instance;
+public static RenderingEngine getInstance() {
+    if (instance == null){
+        instance = new RenderingEngine();
+    }
+    return instance;
 }
+
 public void addKeyListener(KeyListener listener) {
     panel.addKeyListener(listener);
 
@@ -50,6 +54,7 @@ public Doctrine.Canvas buildCanvas() {
         panel.setFocusable(true);
         panel.setDoubleBuffered(true);
         frame.add(panel);
+        frame.setUndecorated(true);
     }
     private void initializeFrame(){
         frame = new JFrame();
@@ -67,5 +72,8 @@ public Doctrine.Canvas buildCanvas() {
         bufferEngine.setRenderingHints(hints);//definir comment gerer son affichage
         return hints;
     }
-
+    private RenderingEngine() {
+        initializeFrame();
+        initializePanel();
+    }
 }

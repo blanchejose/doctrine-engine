@@ -1,6 +1,5 @@
 package Doctrine;
 
-import java.awt.event.KeyListener;
 
 public abstract class Game {
     private RenderingEngine renderingEngine;
@@ -10,18 +9,18 @@ public abstract class Game {
    public abstract void draw(Canvas canvas);
 
     public final void start(){
-        renderingEngine = new RenderingEngine();
+        renderingEngine = RenderingEngine.getInstance();
         renderingEngine.start();
         initialize();
         run();
         conclude();
+    }
 
-    }
-    public void addKeyListener(KeyListener listener){
-        renderingEngine.addKeyListener(listener);
-    }
     public void conclude(){
 
+    }
+    public void stop(){
+        playing = false;
     }
 private void run(){
     GameTime time = new GameTime();
@@ -32,6 +31,7 @@ private void run(){
         time.synchronize();
 
     }
+    renderingEngine.stop();
 }
 
 }

@@ -2,61 +2,59 @@ package Doctrine;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashMap;
 
 public class Controller implements KeyListener {
 
-    private boolean upPressed;
-    private boolean rightPressed;
-    private boolean downPressed;
-    private boolean leftPressed;
 
+    private HashMap<Integer, Boolean> pressedKeys;
 
+    public Controller(){
+        pressedKeys = new HashMap<>();
+        RenderingEngine.getInstance().addKeyListener(this);
 
-    public boolean isDownPressed() {
-        return downPressed;
     }
 
-    public boolean isUpPressed() {
-        return upPressed;
+    public void bindKey(int keyCode){
+        pressedKeys.put(keyCode, false);
     }
 
-
-    public boolean isLeftPressed() {
-        return leftPressed;
+    public void clearKey(int keyCode){
+        pressedKeys.clear();
     }
 
-
-    public boolean isRightPressed() {
-        return rightPressed;
+    public void removeKey(int keyCode){
+        pressedKeys.remove(keyCode);
     }
 
+    public boolean isKeyPressed(int keyCode){
+        return pressedKeys.containsKey(keyCode)
+                && pressedKeys.get(keyCode);
+    }
 
 
 
     @Override
     public void keyTyped(KeyEvent e) {
-     if (e.getKeyChar() == KeyEvent.VK_UP) {
-        upPressed = false;
-     }
-     if (e.getKeyChar() == KeyEvent.VK_DOWN) {
-        downPressed = false;
-     }
-     if (e.getKeyChar() == KeyEvent.VK_LEFT) {
-       leftPressed = false;
-     }
-     if (e.getKeyChar() == KeyEvent.VK_RIGHT) {
-       rightPressed = false;
-     }
 
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+        int keyCode = e.getKeyCode();
+        if (pressedKeys.containsKey(keyCode)) {
+            pressedKeys.put(keyCode, true);
+        }
 
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+
+        int keyCode = e.getKeyCode();
+        if (pressedKeys.containsKey(keyCode)) {
+            pressedKeys.put(keyCode, false);
+        }
 
     }
 }

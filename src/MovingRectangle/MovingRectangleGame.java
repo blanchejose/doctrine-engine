@@ -3,25 +3,27 @@ package MovingRectangle;
 import Doctrine.Canvas;
 import Doctrine.Controller;
 import Doctrine.Game;
+import Doctrine.RenderingEngine;
 
 import java.awt.*;
 
 public class MovingRectangleGame extends Game {
-    private Controller controller;
+    private  GamePad gamePad;
     private Player player;
     private Npc npc;
 
     @Override
     public void initialize() {
-        controller = new Controller();
-        addKeyListener(controller);
-        player = new Player(controller);
+        gamePad = new GamePad();
+        player = new Player(gamePad);
         npc = new Npc();
             }
 
     @Override
     public void update() {
-
+    if(gamePad.isQuitPressed()){
+        super.stop();
+    }
         player.update();
         npc.update();
     }
