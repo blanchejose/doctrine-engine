@@ -1,21 +1,22 @@
 package AmazingFootprint;
 
 import Doctrine.Canvas;
+import Doctrine.StaticEntity;
 
 import java.awt.*;
 import java.util.Random;
-
-public class Footprint {
+import Doctrine.StaticEntity;
+import Doctrine.Canvas;
+public class Footprint extends StaticEntity {
     private int x;
     private int y;
     private int width;
     private int height;
 
     public Footprint(int x, int y) {
-        this.x = x;
-        this.y = y;
-        width = 5;
-        height = 5;
+        moveTo(x, y);
+        setDimension(5,5);
+
 
     }
 
