@@ -1,4 +1,4 @@
-package MovingRectangle;
+package AmazingFootprint;
 
 import Doctrine.MovementController;
 

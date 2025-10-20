@@ -1,4 +1,5 @@
 package MovingRectangle;
+import AmazingFootprint.GamePad;
 import Doctrine.Canvas;
 import Doctrine.Controller;
 

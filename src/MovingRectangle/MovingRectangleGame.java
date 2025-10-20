@@ -1,14 +1,13 @@
 package MovingRectangle;
 
+import AmazingFootprint.GamePad;
 import Doctrine.Canvas;
-import Doctrine.Controller;
 import Doctrine.Game;
-import Doctrine.RenderingEngine;
 
 import java.awt.*;
 
 public class MovingRectangleGame extends Game {
-    private  GamePad gamePad;
+    private GamePad gamePad;
     private Player player;
     private Npc npc;
 
