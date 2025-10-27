@@ -2,6 +2,7 @@ package Doctrine;
 
 import java.awt.*;
 //wrapper class cest quand tu utilisee une classe qui ne t'appartient pas'
+//procteted c'est juste le afmille
 public class Canvas {
     private Graphics2D graphics;
     public Canvas(Graphics2D graphics) {

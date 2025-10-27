@@ -2,29 +2,20 @@ package AmazingFootprint;
 
 import java.awt.*;
 import Doctrine.Canvas;
+import Doctrine.MovableEntity;
 
-public class Player {
+public class Player extends MovableEntity {
     private GamePad  gamePad;
-    private int x;
-    private int y;
-    private int speed;
 
     public Player(GamePad gamePad) {
-        x = 200;
-        y = 200;
-        speed = 3;
+    moveTo(200,200);
+    setSpeed(3);
+    setDimension(20,60);
         this.gamePad = gamePad;
     }
     public void update() {
-        if(gamePad.isDownPressed()){
-            y += speed;
-        }
-       else  if(gamePad.isUpPressed()){
-            y -= speed;
-        }else  if(gamePad.isLeftPressed()){
-           x -= speed;
-        }else  if(gamePad.isRightPressed()){
-           x += speed;
+        if(gamePad.isMoving()) {
+            move(gamePad.getDirection());
         }
     }
     public Footprint layFootprint() {
@@ -32,7 +23,7 @@ public class Player {
     }
 
     public void draw (Canvas canvas){
-        canvas.drawRectangle(x,y,20,60,Color.WHITE);
+        canvas.drawRectangle(this,Color.WHITE);
     }
 
 }
