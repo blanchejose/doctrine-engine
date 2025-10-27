@@ -1,7 +1,6 @@
 package BouncingBall;
 
 import Doctrine.Canvas;
-
 import java.awt.*;
 import java.util.Random;
 
