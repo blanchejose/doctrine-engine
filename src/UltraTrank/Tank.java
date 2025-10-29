@@ -35,5 +35,7 @@ public Missile fire(){
         canvas.drawRectangle(this,Color.GREEN);
         int cooldownWidth = cooldown * width/50;
         canvas.drawRectangle(x,y-5, cooldownWidth, 2, Color.RED);
-            }
+
+        drawHitBox(canvas);
+    }
 }

@@ -1,5 +1,7 @@
 package Doctrine;
 
+import java.awt.*;
+
 public abstract class StaticEntity {
     protected int x;
     protected int y;
@@ -15,6 +17,14 @@ public abstract class StaticEntity {
     public void setDimension(int width, int height) {
         this.width = width;
         this.height = height;
+    }
+    //si les 2 rectectangles intersectes
+    public boolean intersectsWidth(StaticEntity other) {
+        return getBounds().intersects(other.getBounds());
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
     }
 
     public int getX() {
