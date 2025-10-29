@@ -1,6 +1,6 @@
 package MovingRectangle;
 
-import AmazingFootprint.GamePad;
+import UltraTrank.GamePad;
 import Doctrine.Canvas;
 import Doctrine.Game;
 

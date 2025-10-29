@@ -2,31 +2,41 @@ package AmazingFootprint;
 
 import Doctrine.Canvas;
 import Doctrine.Game;
+import UltraTrank.GamePad;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class AmazingFootprintGame extends Game {
-    private Player player;
-    private GamePad gamePad;
+    private Player playerOne;
+    private Player playerTwo;
+
+    private GamePad gamePadOne;
+    private GamePad gamePadTwo;
+
     private ArrayList<Footprint> footprints;
 
     @Override
     public void initialize() {
-        gamePad = new GamePad();
-        player = new Player(gamePad);
+        gamePadOne = new GamePad();
+        gamePadTwo = new GamePad();
+gamePadTwo.useWasdKeys();
+        playerOne = new Player(gamePadOne);
+        playerTwo = new Player(gamePadTwo);
+
         footprints = new ArrayList<>();
     }
 
     @Override
     public void update() {
-        if (gamePad.isQuitPressed()){
+        if (gamePadOne.isQuitPressed()){
         stop();
         }
 
-        player.update();
-        if(gamePad.isMoving()){
-          footprints.add(player.layFootprint());
+        playerOne.update();
+        playerTwo.update();
+        if(gamePadOne.isMoving()){
+          footprints.add(playerOne.layFootprint());
 
         }
     }
@@ -35,10 +45,14 @@ public class AmazingFootprintGame extends Game {
     @Override
     public void draw(Canvas canvas) {
     canvas.drawRectangle(0,0,800,600, Color.BLUE);
-    for (Footprint footprint : footprints) {
-        footprint.draw(canvas);
-    }
-    player.draw(canvas);
+  drawFootprints(canvas);
+    playerOne.draw(canvas);
+    playerTwo.draw(canvas);
 
+    }
+    public void drawFootprints(Canvas canvas) {
+        for (Footprint footprint : footprints) {
+            footprint.draw(canvas);
+        }
     }
 }
