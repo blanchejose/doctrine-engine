@@ -1,6 +1,7 @@
 package UltraTrank;
 
 import Doctrine.Canvas;
+import Doctrine.CollidableRepository;
 import Doctrine.Direction;
 import Doctrine.MovableEntity;
 
@@ -12,9 +13,11 @@ public class Missile extends MovableEntity {
         setSpeed(5);
         setDirection(tank.getDirection());
         initialize(tank);
+        CollidableRepository.getInstance().registerEntity(this);//
     }
     @Override
     public void update() {
+        super.update();//
     move();
     if(x >=820){
         x = -20;

@@ -11,7 +11,7 @@ public class Tank extends ControllableEntity {
     public Tank(GamePad gamePad) {
         super(gamePad);
         setDimension(30,30);
-        setSpeed(3);
+        setSpeed(2);
         moveTo(100,100);
     }
 public Missile fire(){
@@ -23,6 +23,7 @@ public Missile fire(){
 }
     @Override
     public void update() {
+        super.update();
         moveWithController();
         if(cooldown > 0) {
             cooldown--;
@@ -35,7 +36,9 @@ public Missile fire(){
         canvas.drawRectangle(this,Color.GREEN);
         int cooldownWidth = cooldown * width/50;
         canvas.drawRectangle(x,y-5, cooldownWidth, 2, Color.RED);
-
+    if(hasMoved()){
         drawHitBox(canvas);
+
+    }
     }
 }

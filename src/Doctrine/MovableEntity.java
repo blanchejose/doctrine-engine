@@ -8,7 +8,17 @@ public abstract class MovableEntity extends StaticEntity {
     private Direction direction = Direction.UP;
     // hitbox ggere les projections
 
-    public abstract void update();
+    private Collision collision;
+    private int lastX  = Integer.MAX_VALUE;
+    private int lastY  = Integer.MIN_VALUE;
+    private boolean moved = false;
+
+    public void update(){
+        moved = false;
+    }
+    public MovableEntity(){
+        collision = new Collision(this);
+    }
     public Rectangle getHitBox(){
         switch(direction){
             case UP:return  getUpperHitBox();
@@ -46,8 +56,15 @@ public abstract class MovableEntity extends StaticEntity {
         return new Rectangle(x+width,y,speed,height);
     }
     public void move(){
-        x += direction.calculateVelocityX(speed);
-        y += direction.calculateVelocityY(speed);
+        int allowedSpeed = collision.getAllowedSpeed(direction);
+        x += direction.calculateVelocityX(allowedSpeed);
+        y += direction.calculateVelocityY(allowedSpeed);
+        moved =(x!= lastX) || (y!= lastY);
+        lastX = x;
+        lastY = y;
+    }
+    public boolean hasMoved(){
+        return moved;
     }
     public void move(Direction direction){
         if(direction != null){
