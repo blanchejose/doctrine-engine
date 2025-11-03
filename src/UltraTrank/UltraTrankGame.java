@@ -1,9 +1,12 @@
 package UltraTrank;
 
 import Doctrine.Canvas;
+import Doctrine.CollidableRepository;
 import Doctrine.Game;
+import Doctrine.StaticEntity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class UltraTrankGame extends Game {
 private GamePad gamePad;
@@ -38,9 +41,26 @@ private ArrayList<Brick> bricks;
             }
         }
         tank.update();
+        ArrayList<StaticEntity> KilledElements = new ArrayList<>();
+
         for (Missile missile : missiles) {
             missile.update();
+            for (Brick brick : bricks) {
+                if (missile.hitBoxIntersectsWith(brick)) {
+                    KilledElements.add(brick);
+                    KilledElements.add(missile);
+                }
+            }
         }
+        for(StaticEntity entity : KilledElements){
+           if(entity instanceof Brick){
+               bricks.remove(entity);
+           }
+           if(entity instanceof Missile){
+               missiles.remove(entity);
+           }
+        }
+        CollidableRepository.getInstance().unregisterEntities(KilledElements);
 
     }
 
