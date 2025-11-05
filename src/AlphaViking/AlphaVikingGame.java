@@ -21,7 +21,7 @@ public class AlphaVikingGame extends Game {
         player.moveTo(200,200);
         world = new World();
         world.load();
-        tree = new Tree();
+        tree = new Tree(300,350);
         tree.moveTo(300,350);
 
     }
@@ -31,7 +31,13 @@ public class AlphaVikingGame extends Game {
         if(gamePad.isQuitPressed()){
             stop();
         }
+
       player.update();
+        if(player.getY() < tree.getY() +52){
+            tree.blockadaFromTop();
+        }else {
+            tree.blockadaToBottom();        }
+
     }
 
     @Override
