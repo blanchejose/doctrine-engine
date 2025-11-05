@@ -7,12 +7,17 @@ import AlphaViking.Player;
 import Doctrine.Canvas;
 import Doctrine.Game;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 public class AlphaVikingGame extends Game {
 
     private AlphaViking.Player player;
     private AlphaViking.GamePad gamePad;
     private  World world;
     private Tree tree;
+    private int soundCooldown;
 
     @Override
     public void initialize() {
@@ -37,6 +42,23 @@ public class AlphaVikingGame extends Game {
             tree.blockadaFromTop();
         }else {
             tree.blockadaToBottom();        }
+        soundCooldown--;
+        if(soundCooldown < 0){
+            soundCooldown = 0;
+        }
+        if(gamePad.isFirePressed()&& soundCooldown ==0){
+        soundCooldown = 100;
+        try {
+            Clip clip = AudioSystem.getClip();
+            AudioInputStream stream = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResourceAsStream("audios/fire.wav"));
+            clip.open(stream);
+            clip.start();
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+
+        }
 
     }
 
