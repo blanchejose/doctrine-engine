@@ -1,12 +1,12 @@
 package UltraTrank;
 
+import AlphaViking.GamePad;
 import Doctrine.Canvas;
 import Doctrine.CollidableRepository;
 import Doctrine.Game;
 import Doctrine.StaticEntity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class UltraTrankGame extends Game {
 private GamePad gamePad;

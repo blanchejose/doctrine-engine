@@ -1,8 +1,9 @@
 package AmazingFootprint;
 
+import AlphaViking.Player;
 import Doctrine.Canvas;
+import AlphaViking.GamePad;
 import Doctrine.Game;
-import UltraTrank.GamePad;
 
 import java.awt.*;
 import java.util.ArrayList;

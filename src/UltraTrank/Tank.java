@@ -1,5 +1,6 @@
 package UltraTrank;
 
+import AlphaViking.GamePad;
 import Doctrine.Canvas;
 import Doctrine.ControllableEntity;
 

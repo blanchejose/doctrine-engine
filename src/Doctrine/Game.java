@@ -6,7 +6,7 @@ public abstract class Game {
     private boolean playing = true;
     public abstract void initialize();
     public abstract void update();
-   public abstract void draw(Canvas canvas);
+    public abstract void draw(Canvas canvas);
 
     public final void start(){
         renderingEngine = RenderingEngine.getInstance();
@@ -22,16 +22,16 @@ public abstract class Game {
     public void stop(){
         playing = false;
     }
-private void run(){
-    GameTime time = new GameTime();
-    while(playing){
-        update();
-        draw(renderingEngine.buildCanvas());
-        renderingEngine.drawOnScreen();
-        time.synchronize();
+    private void run(){
+        GameTime time = new GameTime();
+        while(playing){
+            update();
+            draw(renderingEngine.buildCanvas());
+            renderingEngine.drawOnScreen();
+            time.synchronize();
 
+        }
+        renderingEngine.stop();
     }
-    renderingEngine.stop();
-}
 
 }

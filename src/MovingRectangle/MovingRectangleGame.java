@@ -1,6 +1,7 @@
 package MovingRectangle;
 
-import UltraTrank.GamePad;
+import AlphaViking.GamePad;
+import AlphaViking.Player;
 import Doctrine.Canvas;
 import Doctrine.Game;
 
