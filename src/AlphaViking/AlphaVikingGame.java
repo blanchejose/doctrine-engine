@@ -12,6 +12,7 @@ public class AlphaVikingGame extends Game {
     private AlphaViking.Player player;
     private AlphaViking.GamePad gamePad;
     private  World world;
+    private Tree tree;
 
     @Override
     public void initialize() {
@@ -20,6 +21,8 @@ public class AlphaVikingGame extends Game {
         player.moveTo(200,200);
         world = new World();
         world.load();
+        tree = new Tree();
+        tree.moveTo(300,350);
 
     }
 
@@ -34,7 +37,16 @@ public class AlphaVikingGame extends Game {
     @Override
     public void draw(Canvas canvas) {
         world.draw(canvas);
-        player.draw(canvas);
+        if(player.getY() < tree.getY() +52){
+            player.draw(canvas);
+            tree.draw(canvas);
+
+        } else  {
+            tree.draw(canvas);
+
+            player.draw(canvas);
+        }
+
 
     }
 }
