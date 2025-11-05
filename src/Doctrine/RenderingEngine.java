@@ -5,75 +5,79 @@ import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-
 public class RenderingEngine {
-    private BufferedImage bufferedImage;
-    private Graphics2D bufferEngine;
-    private JFrame frame;
+
+    private static RenderingEngine instance;
     private JPanel panel;
-    private  static  RenderingEngine instance;
-public static RenderingEngine getInstance() {
-    if (instance == null){
-        instance = new RenderingEngine();
+    private BufferedImage bufferedImage;
+    private Screen screen;
+
+    public static RenderingEngine getInstance() {
+        if (instance == null) {
+            instance = new RenderingEngine();
+        }
+        return instance;
     }
-    return instance;
-}
 
-public void addKeyListener(KeyListener listener) {
-    panel.addKeyListener(listener);
+    public Screen getScreen() {
+        return screen;
+    }
 
-}
-public void start() {
-    frame.setVisible(true);
-}
-public void stop() {
-    frame.setVisible(false);
-    frame.dispose();
-}
-public Doctrine.Canvas buildCanvas() {
-    bufferedImage = new BufferedImage (800, 600, BufferedImage.TYPE_INT_RGB);
-    bufferEngine = bufferedImage.createGraphics();
-    bufferEngine.setRenderingHints(buildRenderingHints());
-    return new Canvas(bufferEngine);
-}
+    public void start() {
+        screen.start();
+    }
 
+    public void stop() {
+        screen.stop();
+    }
 
+    public void addKeyListener(KeyListener keyListener) {
+        panel.addKeyListener(keyListener);
+    }
 
-    public void drawOnScreen(){
-        Graphics2D graphics =(Graphics2D) panel.getGraphics();
-        graphics.drawImage(bufferedImage,0,0,panel);
+    public Canvas buildCanvas() {
+
+        Graphics2D buffer = bufferedImage.createGraphics();
+        buffer.setRenderingHints(buildRenderingHints());
+        return new Canvas(buffer);
+    }
+
+    public void drawOnScreen() {
+        Graphics2D graphics = (Graphics2D) panel.getGraphics();
+        graphics.drawImage(bufferedImage, 0, 0,
+                screen.getWidth(), screen.getHeight(),
+                0, 0,
+                bufferedImage.getWidth(), bufferedImage.getHeight(), null);
         Toolkit.getDefaultToolkit().sync();
         graphics.dispose();
-
-
     }
 
-    private void initializePanel(){
+    private void initializePanel() {
         panel = new JPanel();
         panel.setBackground(Color.BLUE);
         panel.setFocusable(true);
         panel.setDoubleBuffered(true);
-        frame.add(panel);
-        frame.setUndecorated(true);
+        screen.setPanel(panel);
     }
-    private void initializeFrame(){
-        frame = new JFrame();
-        frame.setSize(800, 600);
-        frame.setLocationRelativeTo(null);//centrer frame
-        frame.setResizable(false);//
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// tuer le programme
-        frame.setState(JFrame.NORMAL);//l'etat normal
-    }
-    private  RenderingHints buildRenderingHints(){
-        RenderingHints hints = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+
+    private RenderingHints buildRenderingHints() {
+        RenderingHints hints = new RenderingHints(
+                RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        hints.put(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        bufferEngine = bufferedImage.createGraphics(); //qui permet décrire sur l'image
-        bufferEngine.setRenderingHints(hints);//definir comment gerer son affichage
+        hints.put(RenderingHints.KEY_RENDERING,
+                RenderingHints.VALUE_RENDER_QUALITY);
         return hints;
     }
+
     private RenderingEngine() {
-        initializeFrame();
+        initializeScreen();
         initializePanel();
+    }
+
+    private void initializeScreen() {
+        screen = new Screen();
+        screen.setSize(800, 600);
+        bufferedImage = new BufferedImage(800, 600,
+                BufferedImage.TYPE_INT_RGB);
     }
 }

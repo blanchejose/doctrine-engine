@@ -6,6 +6,7 @@ import AlphaViking.GamePad;
 import AlphaViking.Player;
 import Doctrine.Canvas;
 import Doctrine.Game;
+import Doctrine.RenderingEngine;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -38,6 +39,7 @@ public class AlphaVikingGame extends Game {
         }catch (Exception e){
             e.printStackTrace();
         }
+        RenderingEngine.getInstance().getScreen().fullscreen();
 
     }
 
@@ -58,15 +60,7 @@ public class AlphaVikingGame extends Game {
         }
         if(gamePad.isFirePressed()&& soundCooldown ==0){
         soundCooldown = 100;
-        try {
-            Clip clip = AudioSystem.getClip();
-            AudioInputStream stream = AudioSystem.getAudioInputStream(this.getClass().getClassLoader().getResourceAsStream("audios/fire.wav"));
-            clip.open(stream);
-            clip.start();
-        }catch (Exception e){
-            e.printStackTrace();
-
-        }
+       SoundEffect.FIRE.play();
 
         }
 
